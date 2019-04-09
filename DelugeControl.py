@@ -3,7 +3,11 @@ import os
 
 class DelugeControl:
     def __init__(self):
+        self.pause()
         self.torrents = self.readInfo()
+
+    def pause(self):
+        os.system('deluge-console "pause *"')
 
     def readInfo(self):
         '''
