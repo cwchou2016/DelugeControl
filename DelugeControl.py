@@ -33,8 +33,11 @@ class DelugeControl:
         os.system("rm info.txt")
         return torrent_list
 
-    def rmCompleteTorrent(self):
-        pass
+    def rmCompletedTorrents(self):
+        for item in self.torrents:
+            if item.get("Progress") is not None:
+                continue
+            self.rmTorrent(item.get("ID"))
 
     def rmTorrent(self, id):
         cmd = 'deluge-console "rm {}"'.format(id)
@@ -42,12 +45,10 @@ class DelugeControl:
 
 
 if __name__ == '__main__':
-    print("test")
+    print("processing rmCompleteTorrent")
 
     dc = DelugeControl()
-
+    # dc.rmCompletedTorrents()
     print(dc.torrents)
-
-    dc.rmTorrent("cc8")
 
     print("done")
