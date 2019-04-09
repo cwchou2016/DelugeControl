@@ -36,6 +36,10 @@ class DelugeControl:
     def rmCompleteTorrent(self):
         pass
 
+    def rmTorrent(self, id):
+        cmd = 'deluge-console "rm {}"'.format(id)
+        os.system(cmd)
+
 
 if __name__ == '__main__':
     print("test")
@@ -43,5 +47,7 @@ if __name__ == '__main__':
     dc = DelugeControl()
 
     print(dc.torrents)
+
+    dc.rmTorrent("cc8")
 
     print("done")
